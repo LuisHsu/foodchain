@@ -61,7 +61,12 @@ Initialize socket connection with `Socket.io(token)` . The token is received whe
 
         ```javascript
         {
-        	"players": [<username>]
+        	"players": {
+                <username>: {
+                    "index": <int>,
+                    "prepared": <bool>,
+                }
+            }
         }
         ```
 
