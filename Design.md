@@ -37,7 +37,13 @@
 
 # Steps
 ## Initialize
-## Game start
+* Initialize pool 
+    * Cards
+    * Filling bank
+* Randomize initial order
+## Setup
+    * Pick store location
+    * Choose reserve card
 ## Step 1 Restructing
 ## Step 2 Order of business
 ## Step 3 Working 9:00-5:00
