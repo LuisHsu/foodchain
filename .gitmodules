@@ -1,0 +1,3 @@
+[submodule "foodchain_backend"]
+	path = foodchain_backend
+	url = https://github.com/jordenchang55/foodchain_backend.git
