@@ -41,8 +41,8 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
 
         ```javascript
         {
-		"prepared": <bool>,
-	}
+        	"prepared": <bool>,
+        }
         ```
 
     - (Client) exchange_place
