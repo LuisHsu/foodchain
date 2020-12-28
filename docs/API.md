@@ -34,16 +34,18 @@ Response:
 
 ### Socket
 
-Initialize socket connection with `Socket.io(token)` . The token is received when login.
+Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . The token is received when login.
 
 - Waiting room
-    - (Client) prepared / cancel
+    - (Client) preparation
 
         ```javascript
-        {}
+        {
+		"prepared": <bool>,
+	}
         ```
 
-    - (Client) exchange place
+    - (Client) exchange_place
 
         ```javascript
         {
@@ -57,7 +59,7 @@ Initialize socket connection with `Socket.io(token)` . The token is received whe
         {}
         ```
 
-    - (Server) update player list
+    - (Server) player_list_update
 
         ```javascript
         {
