@@ -89,11 +89,24 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
         4. Initial order of play: random choose the initial order ⇒ order_decision
         5. Placing first restaurants: One user may pass once ⇒ tile_placement
         6. Setting goals: Each player chooses one bank reserve card without showing to others.
-    - (Server) turn_update: Notify setup completed clients may start first turn.
+    - (Server) turn_update: Notify turn update. Clients may start the animation of next turn.
 
         ```javascript
         {
         	"turn": <int>
+        }
+        ```
+    - (Server) setup_map: Notify the map update. If a new map tile added into game, this event will be sent again.
+
+        ```javascript
+        {
+        	"tiles": [
+		        {
+			    "position": <position>,
+			    "direction": <int>,
+			    "tileId": <string>,
+			}
+                ]
         }
         ```
 
@@ -107,7 +120,7 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
         }
         ```
 
-    - (Server) pool_update: Notify state change of entry in pool
+    - (Server) pool_update: Notify state changes of elements in pool
 
         ```javascript
         { // An event may contain 1 or more keys defined below
@@ -150,6 +163,15 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
         }
         ```
 
+    - (Server) first_restaurant_decision: Notify the next player to determine the location of the first restaurant. Every user may skip only once.
+
+        ```javascript
+        {
+        	"nextPlayer": <username>,
+	        "skippable": <bool>
+        }
+        ```
+
     - (Server) history_update: Notify client what happened in the past.
 
         ```javascript
@@ -180,12 +202,12 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
         ```javascript
         {
         	"available": [<int>], // maybe empty array
-        	"nextUser": <username>, // nullable
+        	"nextPlayer": <username>, // nullable
         	"selected": [<username>, null, null, <username>], // length equals to number of player. May contain null elements.
         }
         ```
 
-    - (Server) dinner time
+    - (Server) dinner_time
 
         ```javascript
         {
@@ -224,7 +246,7 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
         }
         ```
 
-    - (Server) marketing campaign
+    - (Server) marketing_campaign
 
         ```javascript
         {
@@ -237,7 +259,16 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
         }
         ```
 
-    - (Client) pick reserve card
+    - (Client) pick_first_restaurant: This event is only for the first restaurant. Since the second restaurant, please use `put_tile`.
+
+        ```javascript
+        {
+        	"position": <position>, // Pass undefine if skip
+		"direction": 0~3,
+        }
+        ```
+
+    - (Client) pick_reserve_card
 
         ```javascript
         {
@@ -245,7 +276,7 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
         }
         ```
 
-    - (Clinet) Lock structure
+    - (Clinet) lock_structure
 
         ```javascript
         {
@@ -253,7 +284,7 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
         }
         ```
 
-    - (Client) choose order of business
+    - (Client) pick_order
 
         ```javascript
         {
@@ -266,8 +297,17 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
         ```javascript
         <structure>
         ```
+    - (Client) put_tile
+        ```javascript
+        {
+	        "position": [<position>],
+	        "direction": 0~3,
+	        "tileId": <tileId>,
+	        "type": "house" | "garden" | "restaurant" | "marketing",
+        }
+	```
 
-    - (Client) animation complete: Notify server that all animations have been completed
+    - (Client) animation_complete: Notify server that all animations have been completed
 
         ```javascript
         {
