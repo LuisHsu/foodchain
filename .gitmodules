@@ -3,4 +3,4 @@
 	url = https://github.com/jordenchang55/foodchain_backend.git
 [submodule "frontend"]
 	path = frontend
-	url = git@github.com:AndrewZZJ/Food-chain-frontend.git
+	url = https://github.com/AndrewZZJ/Food-chain-frontend.git
