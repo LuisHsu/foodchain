@@ -56,7 +56,15 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
     - (Server) Launch: Notice all clients to join the game room.
 
         ```javascript
-        {}
+        {
+        	"players": {
+                <username>: {
+                    "index": <int>,
+                    "prepared": <bool>,
+                },
+                "spectaculars": [<username>]
+            }
+        }
         ```
 
     - (Server) player_list_update
@@ -67,7 +75,8 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
                 <username>: {
                     "index": <int>,
                     "prepared": <bool>,
-                }
+                },
+                "spectaculars": [<username>]
             }
         }
         ```
