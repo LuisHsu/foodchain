@@ -127,6 +127,7 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
         	"money": <int>,
         	"employees": <structure>,
         	"milestones": {
+			"remain": [<milestone_id>],
         		"achieved": {	
         			<milestone_id>: [<username>],
         		},
@@ -191,7 +192,7 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
         ```javascript
         {
         	<username>: {
-        		"structures": [<employee>],
+        		"structures": <structure>,
         		"openSlots": <int>, // Includes slot counts from Milestones
         	}
         }
@@ -346,3 +347,14 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
     	"amount": <int>,
     }
     ```
+    ### Category:
+
+Each employee card is belong to a category. Client can use it to deteremine which bachground color to use.
+
+	* management: Employee can add open slot.
+	* pricing: Employee can change selling price.
+	* hr: Human resource, including traing & recruiting.
+	* drink: Employee can get drinks.
+	* food: Employee can get foods.
+	* restaurant: Employees can built new restaurant.
+	* misc: Any other employees cannot be categorized.
