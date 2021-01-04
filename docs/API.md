@@ -127,7 +127,7 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
         	"money": <int>,
         	"employees": <structure>,
         	"milestones": {
-			"remain": [<milestone_id>],
+                        "remain": [<milestone_id>],
         		"achieved": {	
         			<milestone_id>: [<username>],
         		},
@@ -135,15 +135,9 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
         			<milestone_id>: [<username>],
         		}
         	},
-        	"houses": {
-        		<house_id>: <position>,
-        	},
-        	"garden": {
-        		<garden_id>: <position>,
-        	},
-        	"ads": {
-        		<ad_id>: <position>,
-        	}
+                "houses": [<house_id>],
+                "gardenNumber": <int>,
+                "ads": [<ad_id>]
         }
         ```
 
@@ -169,7 +163,7 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
         ```javascript
         {
         	"nextPlayer": <username>,
-	        "skippable": <bool>
+                "skippable": <bool>
         }
         ```
 
@@ -259,13 +253,22 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
         	]
         }
         ```
+    - (Server) show_reserve_card
+
+        ```javascript
+        {
+        	"cards": {
+                         <username>: 100 | 200 | 300
+                }
+        }
+        ```
 
     - (Client) pick_first_restaurant: This event is only for the first restaurant. Since the second restaurant, please use `put_tile`.
 
         ```javascript
         {
         	"position": <position>, // Pass undefine if skip
-		"direction": 0~3,
+                "direction": 0~3,
         }
         ```
 
