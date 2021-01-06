@@ -171,7 +171,7 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
 
         ```javascript
         {
-        	actions: [
+        	"actions": [
         		{
         			"phase": <phase_index>,
         			"player": <username>,
@@ -253,13 +253,20 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
         	]
         }
         ```
+
+    - (Server) reserve_card_decision: ask clients to submit reserve card
+
+        ```javascript
+        {}
+        ```
     - (Server) show_reserve_card
 
         ```javascript
         {
-        	"cards": {
-                         <username>: 100 | 200 | 300
-                }
+            "cards": {
+                 <username>: 100 | 200 | 300
+            },
+            "to": [], // Optional. If undefined, show cards to all users.
         }
         ```
 
@@ -301,7 +308,9 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
         ```javascript
         <structure>
         ```
+
     - (Client) put_tile
+
         ```javascript
         {
 	        "position": [<position>],
@@ -309,21 +318,21 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
 	        "tileId": <tileId>,
 	        "type": "house" | "garden" | "restaurant" | "marketing",
         }
-	```
-
+	   ```
     - (Client) animation_complete: Notify server that all animations have been completed
 
         ```javascript
         {
-        	"phase": <phase_index>
+	        "phase": <phase_index>,
         }
-        ```
+    	```
+  
 
-    ### Data Structure:
+### Data Structure:
 
-    Defines some common data structure used above
+Defines some common data structure used above
 
-    - structure
+  - structure
 
     ```javascript
     {
@@ -331,7 +340,7 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
     }
     ```
 
-    - position
+  - position
 
     ```javascript
     {
@@ -342,7 +351,7 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
     }
     ```
 
-    - food
+  - food
 
     ```javascript
     {
@@ -350,14 +359,14 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
     	"amount": <int>,
     }
     ```
-    ### Category:
 
-Each employee card is belong to a category. Client can use it to deteremine which bachground color to use.
+### Category:
 
-	* management: Employee can add open slot.
-	* pricing: Employee can change selling price.
-	* hr: Human resource, including traing & recruiting.
-	* drink: Employee can get drinks.
-	* food: Employee can get foods.
-	* restaurant: Employees can built new restaurant.
-	* misc: Any other employees cannot be categorized.
+Each employee card is belong to a category. Client can use it to deteremine which bachground color to use.  
+  - management: Employee can add open slot.
+  - pricing: Employee can change selling price.
+  - hr: Human resource, including traing & recruiting.
+  - drink: Employee can get drinks.
+  - food: Employee can get foods.
+  - restaurant: Employees can built new restaurant.
+  - misc: Any other employees cannot be categorized.
