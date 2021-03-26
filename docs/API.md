@@ -147,7 +147,7 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
         {
         	<username>: {
         		"coffeeShopAmount": <int>,
-        		"shopAmount": <int>,
+        		"restaurantAmount": <int>,
         		"foods": [<food>],
         		"milestones": [<milestone_id>],
         		"structure": <structure>,
