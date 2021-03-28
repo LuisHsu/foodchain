@@ -186,7 +186,7 @@ Initialize socket connection with `Socket.io({ auth: { token: <token> } })` . Th
         ```javascript
         {
         	<username>: {
-        		"structures": <structure>,
+        		"structure": <structure>,
         		"openSlots": <int>, // Includes slot counts from Milestones
         	}
         }
